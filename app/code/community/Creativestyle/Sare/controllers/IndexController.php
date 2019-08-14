@@ -2,6 +2,9 @@
 class Creativestyle_Sare_IndexController extends Mage_Core_Controller_Front_Action
 {
     public function abandonedcartsAction(){
+
+               die('Disabled in this version.');
+
                $key = $this->getRequest()->getParam('key');
                if($key!=Mage::getStoreConfig('sare/settings/key')){
                     die('Wrong key!');

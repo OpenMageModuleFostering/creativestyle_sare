@@ -17,6 +17,11 @@ class Creativestyle_Sare_Helper_Data extends Mage_Core_Helper_Abstract {
      */
 
     public function sendProblemNotification($title, $description, $modelData, $apiUrl){
+
+        if(!Mage::getStoreConfig('sare/settings/send_problem_mails')){
+            return false;
+        }
+
         Mage::getDesign()->setArea('frontend');
         $dynamicContent = array(
             '%TITLE%'=> Mage::helper('sare')->__($title),

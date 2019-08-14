@@ -48,6 +48,9 @@ class Creativestyle_Sare_Model_Observer{
     }
 
     public function test($event){
+        if(!Mage::getStoreConfig('sare/settings/enabled')||!Mage::getStoreConfig('sare/settings/enabled_addresschange')){
+            return $event;
+        }
         $customerId = $event->getCustomerAddress()->getCustomerId();
         $customer = Mage::getModel('customer/customer')->load($customerId);
         $this->updateCustomerData($event, $customer);
@@ -60,8 +63,9 @@ class Creativestyle_Sare_Model_Observer{
     }
 
     public function updateCustomerDataAfterOrder($observer){
-        if(!Mage::getStoreConfig('sare/settings/enabled')){
-            return $this;
+
+        if(!Mage::getStoreConfig('sare/settings/enabled')||!Mage::getStoreConfig('sare/settings/enabled_afterorder')){
+            return $observer;
         }
 
         $order = $observer->getOrder();
@@ -79,6 +83,8 @@ class Creativestyle_Sare_Model_Observer{
         if(is_object($sareSubscriberModel)&&$sareSubscriberModel->getMkey()!=''){
             Mage::getModel('creativestyle_sare/sare')->updateCustomerData($customer, $customerData, $sareSubscriberModel->getMkey());
         }
+
+        return $observer;
     }
 
     public function updateCustomerData($observer, $customer = null){
@@ -122,7 +128,7 @@ class Creativestyle_Sare_Model_Observer{
         if(!Mage::getStoreConfig('sare/settings/enabled')){
             return $this;
         }
-        if (Mage::app()->getFrontController()->getAction()->getFullActionName() === 'adminhtml_dashboard_index')
+        if (is_object(Mage::app()->getFrontController()->getAction())&&Mage::app()->getFrontController()->getAction()->getFullActionName() === 'adminhtml_dashboard_index')
         {
             $block = $observer->getBlock();
             if ($block->getNameInLayout() === 'dashboard')
@@ -140,7 +146,7 @@ class Creativestyle_Sare_Model_Observer{
             return $this;
         }
 
-        if (Mage::app()->getFrontController()->getAction()->getFullActionName() === 'adminhtml_dashboard_index')
+        if (is_object(Mage::app()->getFrontController()->getAction())&&Mage::app()->getFrontController()->getAction()->getFullActionName() === 'adminhtml_dashboard_index')
         {
             if ($observer->getBlock()->getUseAsDashboardHook())
             {

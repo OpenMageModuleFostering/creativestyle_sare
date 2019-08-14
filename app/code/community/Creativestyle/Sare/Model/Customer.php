@@ -237,7 +237,12 @@ class Creativestyle_Sare_Model_Customer extends Mage_Core_Model_Abstract{
      * @return mixed
      */
      static function registered_on($customer){
-        $sTime = Mage::app()
+         if(!$customer->getCreatedAt()){
+             return "";
+         }
+
+
+         $sTime = Mage::app()
             ->getLocale()
             ->date(strtotime($customer->getCreatedAt()), null, null, false)
             ->toString('YYYY-MM-dd H:m:s');

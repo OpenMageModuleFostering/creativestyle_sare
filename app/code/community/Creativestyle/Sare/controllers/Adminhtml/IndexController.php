@@ -80,7 +80,7 @@ class Creativestyle_Sare_Adminhtml_IndexController
                     // Should be subscriber
                     $responseArr['messages'][] = array('text'=>$this->__('<b>%s</b> should be subscribed...', $currentSubscriber->getSubscriberEmail()), 'class'=>'info');
                     $sare = Mage::getModel('creativestyle_sare/sare');
-                    $mkey = $sare->subscribe($currentSubscriber->getEmail(), $currentSubscriber->getCustomerId());
+                    $mkey = $sare->subscribe($currentSubscriber->getEmail(), $currentSubscriber->getCustomerId(), $currentSubscriber->getUnsubscriptionLink());
                     if($mkey){
                         $responseArr['messages'][] = array('text'=> $this->__('Subscribed with mkey = %s', $mkey), 'class'=>'success');
                         if($currentSubscriber->getCustomerId()>0){
