@@ -76,7 +76,9 @@ class Creativestyle_Sare_Model_Observer{
 
         // Now we know we have customer already subscribed in SARE as well (we have valid mkey!)
         $customerData = Mage::getModel('creativestyle_sare/customer')->populateCustomerData($customer);
-        Mage::getModel('creativestyle_sare/sare')->updateCustomerData($customer, $customerData, $sareSubscriberModel->getMkey());
+        if(is_object($sareSubscriberModel)&&$sareSubscriberModel->getMkey()!=''){
+            Mage::getModel('creativestyle_sare/sare')->updateCustomerData($customer, $customerData, $sareSubscriberModel->getMkey());
+        }
     }
 
     public function updateCustomerData($observer, $customer = null){
@@ -108,7 +110,9 @@ class Creativestyle_Sare_Model_Observer{
         $customerData = Mage::getModel('creativestyle_sare/customer')->populateCustomerData($customer);
 
         // Update customer data at SARE side
-        Mage::getModel('creativestyle_sare/sare')->updateCustomerData($customer, $customerData, $sareSubscriberModel->getMkey());
+        if(is_object($sareSubscriberModel)&&$sareSubscriberModel->getMkey()!=''){
+            Mage::getModel('creativestyle_sare/sare')->updateCustomerData($customer, $customerData, $sareSubscriberModel->getMkey());
+        }
     }
 
     // This is ugly hack for getting into dashboard blocks

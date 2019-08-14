@@ -13,7 +13,7 @@ class Creativestyle_Sare_Model_Sare{
     const SARE_API_UPDATE_METHOD = 'upd.php';
 
     const SETTINGS_KEY_CUSTOMER = 'customer';
-    const SETTINGS_KEY_GUEST = 'customer';
+    const SETTINGS_KEY_GUEST = 'guest';
 
 
     private function validateSettings(){
