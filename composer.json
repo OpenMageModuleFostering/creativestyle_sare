@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Creativestyle_Sare",
+    "name": "OpenMageModuleFostering\/Creativestyle_Sare",
     "type": "magento-module",
     "license": "GPL",
     "homepage": "",
     "description": "Easily integrate SARE email marketing software with Magento. Synchronize newsletter subscribers, bought items and sales figures for ultimate control over your email marketing campaigns.",
     "authors": [
-    {
-        "name": "creativestyle",
-        "email": "j.fojcik@creativestyle.de"
-    }
-],
+        {
+            "name": "creativestyle",
+            "email": "j.fojcik@creativestyle.de"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
