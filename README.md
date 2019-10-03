@@ -1,3 +1,5 @@
+
+
 ## Original Package Description
 
 Easily integrate SARE email marketing software with Magento. Synchronize newsletter subscribers, bought items and sales figures for ultimate control over your email marketing campaigns.
